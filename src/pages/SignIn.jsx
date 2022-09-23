@@ -71,7 +71,6 @@ const SignIn = () => {
                 >
                   Register
                 </Link>
-                `
               </p>
               <p>
                 <Link
