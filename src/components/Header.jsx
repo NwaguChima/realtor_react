@@ -1,9 +1,9 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const navigate = useNavigate();
 
   function pathMatchRoute(route) {
     if (route === pathname) {
@@ -19,6 +19,7 @@ const Header = () => {
             src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
             alt="logo"
             className="h-5 cursor-pointer"
+            onClick={() => navigate("/")}
           />
         </div>
         <div>
@@ -27,7 +28,7 @@ const Header = () => {
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
                 pathMatchRoute("/") && "text-black border-b-red-500"
               }`}
-              //   onClick={() => navigate("/")}
+              onClick={() => navigate("/")}
             >
               Home
             </li>
@@ -35,7 +36,7 @@ const Header = () => {
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
                 pathMatchRoute("/offers") && "text-black border-b-red-500"
               }`}
-              //   onClick={() => navigate("/offers")}
+              onClick={() => navigate("/offers")}
             >
               Offers
             </li>
@@ -44,9 +45,9 @@ const Header = () => {
                 (pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) &&
                 "text-black border-b-red-500"
               }`}
-              //   onClick={() => navigate("/profile")}
+              onClick={() => navigate("/profile")}
             >
-              {pageState}
+              offers
             </li>
           </ul>
         </div>
