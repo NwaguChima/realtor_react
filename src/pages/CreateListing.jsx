@@ -115,6 +115,33 @@ function CreateListing() {
             No
           </button>
         </div>
+
+        <p className="text-lg mt-6 font-semibold">Furnished</p>
+        <div className="flex">
+          <button
+            type="button"
+            id="furnished"
+            value={true}
+            onClick={handleChange}
+            className={`mr-3 px-7 py-3 text-sm font-medium shadow-md uppercase rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
+              !furnished ? "bg-white text-black" : "bg-slate-600 text-white"
+            }`}
+          >
+            Yes
+          </button>
+
+          <button
+            type="button"
+            id="furnished"
+            value={false}
+            onClick={handleChange}
+            className={`ml-3 px-7 py-3 text-sm font-medium shadow-md uppercase rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
+              furnished ? "bg-white text-black" : "bg-slate-600 text-white"
+            }`}
+          >
+            No
+          </button>
+        </div>
       </form>
     </main>
   );
