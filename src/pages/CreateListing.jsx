@@ -59,8 +59,8 @@ function CreateListing() {
           className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
         />
         <div className="">
-          <div className="text-lg font-semibold">
-            <p>Beds</p>
+          <div>
+            <p className="text-lg font-semibold">Beds</p>
             <input
               type="number"
               id="bedrooms"
@@ -68,6 +68,8 @@ function CreateListing() {
               onChange={handleChange}
               min="1"
               max="50"
+              required
+              className="w-full px-4 py-2 text-xl text-gray-300 bg-white border border-gray-700 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
             />
           </div>
         </div>
