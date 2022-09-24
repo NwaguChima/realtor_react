@@ -3,9 +3,10 @@ import React, { useState } from "react";
 function CreateListing() {
   const [formData, setFormData] = useState({
     type: "rent",
+    name: "",
   });
 
-  const { type } = formData;
+  const { type, name } = formData;
 
   function handleChange() {}
 
@@ -43,6 +44,18 @@ function CreateListing() {
             rent
           </button>
         </div>
+        <p className="text-lg mt-6 font-semibold">Name</p>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={handleChange}
+          placeholder="Name"
+          maxLength="32"
+          minLength="10"
+          required
+          className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
+        />
       </form>
     </main>
   );
