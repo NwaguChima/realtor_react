@@ -9,10 +9,19 @@ function CreateListing() {
     parking: false,
     furnished: false,
     address: "",
+    description: "",
   });
 
-  const { type, name, bedrooms, bathrooms, parking, furnished, address } =
-    formData;
+  const {
+    type,
+    name,
+    bedrooms,
+    bathrooms,
+    parking,
+    furnished,
+    address,
+    description,
+  } = formData;
 
   function handleChange() {}
 
@@ -151,6 +160,16 @@ function CreateListing() {
           value={address}
           onChange={handleChange}
           placeholder="Address"
+          required
+          className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
+        />
+        <p className="text-lg font-semibold">Description</p>
+        <textarea
+          type="text"
+          id="description"
+          value={description}
+          onChange={handleChange}
+          placeholder="Description"
           required
           className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
         />
