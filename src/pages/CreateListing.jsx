@@ -256,6 +256,22 @@ function CreateListing() {
             </div>
           </div>
         )}
+
+        <div className="mb-6">
+          <p className="text-lg font-semibold">Images</p>
+          <p className="text-gray-600 mb-1">
+            The first image will be the cover (max 6)
+          </p>
+          <input
+            type="file"
+            id="images"
+            onChange={handleChange}
+            accept=".jpg,.png,.jpeg"
+            multiple
+            required
+            className="w-full px-3 py-1.5 text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600"
+          />
+        </div>
       </form>
     </main>
   );
