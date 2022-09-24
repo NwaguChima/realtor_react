@@ -66,7 +66,6 @@ function CreateListing() {
     }
 
     if (e.target.files) {
-      console.log("files", e.target.files.length);
       const files = e.target.files;
 
       if (files.length > 6) {
