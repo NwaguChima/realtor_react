@@ -11,6 +11,7 @@ function CreateListing() {
     address: "",
     description: "",
     offer: false,
+    regularPrice: 0,
   });
 
   const {
@@ -23,6 +24,7 @@ function CreateListing() {
     address,
     description,
     offer,
+    regularPrice,
   } = formData;
 
   function handleChange() {}
@@ -201,6 +203,29 @@ function CreateListing() {
           >
             No
           </button>
+        </div>
+
+        <div className="flex items-center mb-6">
+          <div className="">
+            <p className="text-lg font-semibold">Regular price</p>
+            <div className="flex w-full justify-center items-center space-x-6 ">
+              <input
+                type="number"
+                id="regularPrice"
+                value={regularPrice}
+                onChange={handleChange}
+                min="50"
+                max="400000000"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+              />
+              {type === "rent" && (
+                <div className="">
+                  <p className="text-md w-full whitespace-nowrap ">$ / Month</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </form>
     </main>
