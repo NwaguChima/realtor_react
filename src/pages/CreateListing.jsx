@@ -6,14 +6,18 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { getAuth } from "firebase/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
-import { v4 as uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 function CreateListing() {
   const auth = getAuth();
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     type: "rent",
@@ -62,9 +66,26 @@ function CreateListing() {
     }
 
     if (e.target.files) {
+      console.log("files", e.target.files.length);
+      const files = e.target.files;
+
+      if (files.length > 6) {
+        toast.error("You can upload a maximum of 6 images");
+        return;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].size > 4000000) {
+          toast.error(
+            `${files.length > 1 ? "Each file" : "File"} must not exceed 4MB`
+          );
+          return;
+        }
+      }
+
       setFormData((prevState) => ({
         ...prevState,
-        images: e.target.files,
+        images: files,
       }));
     }
 
@@ -80,13 +101,13 @@ function CreateListing() {
     e.preventDefault();
     setLoading(true);
 
-    if (discountedPrice >= regularPrice) {
+    if (+discountedPrice >= +regularPrice) {
       setLoading(false);
       toast.error("Discounted price must be less than regular price");
       return;
     }
 
-    if (images.lenght > 6) {
+    if (images.length > 6) {
       setLoading(false);
       toast.error("Maximum 6 images allowed");
       return;
@@ -117,10 +138,9 @@ function CreateListing() {
     async function storeImage(image) {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
-        const filename = `${auth.currentUser.uid}-${image.name}-${uuid()}`;
+        const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
         const storageRef = ref(storage, filename);
         const uploadTask = uploadBytesResumable(storageRef, image);
-
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -137,7 +157,7 @@ function CreateListing() {
                 console.log("Upload is running");
                 break;
               default:
-                console.log("Upload is running");
+                console.log("update default");
             }
           },
           (error) => {
@@ -156,14 +176,30 @@ function CreateListing() {
     }
 
     const imgUrls = await Promise.all(
-      [...images].map(async (image) => storeImage(image))
+      [...images].map((image) => storeImage(image))
     ).catch((error) => {
+      console.log(error);
       setLoading(false);
-      toast.error("Could not upload images");
+      toast.error("Images not uploaded");
       return;
     });
 
-    console.log("images", imgUrls);
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geoLocation,
+      timestamp: serverTimestamp(),
+    };
+
+    delete formDataCopy.images;
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+    delete formDataCopy.latitude;
+    delete formDataCopy.longitude;
+
+    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    setLoading(false);
+    toast.success("Listing created successfully");
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   }
 
   if (loading) {
@@ -430,7 +466,7 @@ function CreateListing() {
         <div className="mb-6">
           <p className="text-lg font-semibold">Images</p>
           <p className="text-gray-600 mb-1">
-            The first image will be the cover (max 6)
+            The first image will be the cover (max 6, 4MB each)
           </p>
           <input
             type="file"
