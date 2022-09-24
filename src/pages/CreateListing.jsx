@@ -4,9 +4,11 @@ function CreateListing() {
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
+    bedrooms: 1,
+    bathrooms: 1,
   });
 
-  const { type, name } = formData;
+  const { type, name, bedrooms, bathrooms } = formData;
 
   function handleChange() {}
 
@@ -56,6 +58,19 @@ function CreateListing() {
           required
           className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
         />
+        <div className="">
+          <div className="text-lg font-semibold">
+            <p>Beds</p>
+            <input
+              type="number"
+              id="bedrooms"
+              value={bedrooms}
+              onChange={handleChange}
+              min="1"
+              max="50"
+            />
+          </div>
+        </div>
       </form>
     </main>
   );
