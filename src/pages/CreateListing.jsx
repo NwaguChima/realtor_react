@@ -8,9 +8,11 @@ function CreateListing() {
     bathrooms: 1,
     parking: false,
     furnished: false,
+    address: "",
   });
 
-  const { type, name, bedrooms, bathrooms, parking, furnished } = formData;
+  const { type, name, bedrooms, bathrooms, parking, furnished, address } =
+    formData;
 
   function handleChange() {}
 
@@ -142,6 +144,16 @@ function CreateListing() {
             No
           </button>
         </div>
+        <p className="text-lg mt-6 font-semibold">Address</p>
+        <textarea
+          type="text"
+          id="address"
+          value={address}
+          onChange={handleChange}
+          placeholder="Address"
+          required
+          className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
+        />
       </form>
     </main>
   );
