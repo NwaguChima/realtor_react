@@ -12,6 +12,7 @@ function CreateListing() {
     description: "",
     offer: false,
     regularPrice: 0,
+    discountedPrice: 0,
   });
 
   const {
@@ -25,6 +26,7 @@ function CreateListing() {
     description,
     offer,
     regularPrice,
+    discountedPrice,
   } = formData;
 
   function handleChange() {}
@@ -227,6 +229,33 @@ function CreateListing() {
             </div>
           </div>
         </div>
+
+        {offer && (
+          <div className="flex items-center mb-6">
+            <div className="">
+              <p className="text-lg font-semibold">Discounted price</p>
+              <div className="flex w-full justify-center items-center space-x-6 ">
+                <input
+                  type="number"
+                  id="discountedPrice"
+                  value={discountedPrice}
+                  onChange={handleChange}
+                  min="50"
+                  max="400000000"
+                  required={offer}
+                  className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+                />
+                {type === "rent" && (
+                  <div className="">
+                    <p className="text-md w-full whitespace-nowrap ">
+                      $ / Month
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </form>
     </main>
   );
