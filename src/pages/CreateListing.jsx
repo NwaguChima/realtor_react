@@ -29,7 +29,32 @@ function CreateListing() {
     discountedPrice,
   } = formData;
 
-  function handleChange() {}
+  function handleChange(e) {
+    e.preventDefault();
+    let boolean = null;
+
+    if (e.target.value === "true") {
+      boolean = true;
+    }
+
+    if (e.target.value === "false") {
+      boolean = false;
+    }
+
+    if (e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: e.target.files,
+      }));
+    }
+
+    if (!e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: boolean ?? e.target.value,
+      }));
+    }
+  }
 
   return (
     <main className="max-w-md px-2 mx-auto">
