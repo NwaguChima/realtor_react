@@ -6,9 +6,11 @@ function CreateListing() {
     name: "",
     bedrooms: 1,
     bathrooms: 1,
+    parking: false,
+    furnished: false,
   });
 
-  const { type, name, bedrooms, bathrooms } = formData;
+  const { type, name, bedrooms, bathrooms, parking, furnished } = formData;
 
   function handleChange() {}
 
@@ -85,6 +87,33 @@ function CreateListing() {
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
             />
           </div>
+        </div>
+
+        <p className="text-lg mt-6 font-semibold">Parking spot</p>
+        <div className="flex">
+          <button
+            type="button"
+            id="parking"
+            value={true}
+            onClick={handleChange}
+            className={`mr-3 px-7 py-3 text-sm font-medium shadow-md uppercase rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
+              !parking ? "bg-white text-black" : "bg-slate-600 text-white"
+            }`}
+          >
+            Yes
+          </button>
+
+          <button
+            type="button"
+            id="parking"
+            value={false}
+            onClick={handleChange}
+            className={`ml-3 px-7 py-3 text-sm font-medium shadow-md uppercase rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
+              parking ? "bg-white text-black" : "bg-slate-600 text-white"
+            }`}
+          >
+            No
+          </button>
         </div>
       </form>
     </main>
