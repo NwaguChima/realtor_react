@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 function CreateListing() {
+  const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
+
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -13,6 +15,8 @@ function CreateListing() {
     offer: false,
     regularPrice: 0,
     discountedPrice: 0,
+    latitude: 0,
+    longitude: 0,
   });
 
   const {
@@ -27,6 +31,8 @@ function CreateListing() {
     offer,
     regularPrice,
     discountedPrice,
+    latitude,
+    longitude,
   } = formData;
 
   function handleChange(e) {
@@ -79,7 +85,7 @@ function CreateListing() {
           <button
             type="button"
             id="type"
-            value="sale"
+            value="rent"
             onClick={handleChange}
             className={`ml-3 px-7 py-3 text-sm font-medium shadow-md uppercase rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-200 ease-in-out w-full ${
               type === "sale"
@@ -194,6 +200,22 @@ function CreateListing() {
           required
           className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 focus:text-gray-700 focus:bg-white focus:border-slate-600"
         />
+        {!geoLocationEnabled && (
+          <div className="">
+            <div className="">
+              <p className="text-lg font-semibold">Latitude</p>
+              <input
+                type="number"
+                id="latitude"
+                value={latitude}
+                onChange={handleChange}
+                required
+                className="w-full px4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:text-gray-700 focus:border-slate-600 text-center"
+              />
+            </div>
+          </div>
+        )}
+
         <p className="text-lg font-semibold">Description</p>
         <textarea
           type="text"
