@@ -1,8 +1,10 @@
 import { getAuth } from "firebase/auth";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const auth = getAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = React.useState({
     name: auth.currentUser.displayName,
@@ -10,6 +12,11 @@ const Profile = () => {
   });
 
   const { name, email } = formData;
+
+  function handleLogout() {
+    auth.signOut();
+    navigate("/");
+  }
 
   return (
     <>
@@ -39,7 +46,10 @@ const Profile = () => {
                   Edit
                 </span>
               </p>
-              <p className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out cursor-pointer">
+              <p
+                onClick={handleLogout}
+                className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out cursor-pointer"
+              >
                 Sign Out
               </p>
             </div>
