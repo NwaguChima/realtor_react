@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function CreateListing() {
-  const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
+  const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     type: "rent",
@@ -17,6 +20,7 @@ function CreateListing() {
     discountedPrice: 0,
     latitude: 0,
     longitude: 0,
+    images: {},
   });
 
   const {
@@ -33,6 +37,7 @@ function CreateListing() {
     discountedPrice,
     latitude,
     longitude,
+    images,
   } = formData;
 
   function handleChange(e) {
@@ -62,10 +67,31 @@ function CreateListing() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+
+    if (discountedPrice >= regularPrice) {
+      setLoading(false);
+      toast.error("Discounted price must be less than regular price");
+      return;
+    }
+
+    if (images.lenght > 6) {
+      setLoading(false);
+      toast.error("Maximum 6 images allowed");
+      return;
+    }
+  }
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <main className="max-w-md px-2 mx-auto">
       <h1 className="text-3xl text-center mt-6 font-bold">Create a Listing</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <p className="text-lg mt-6 font-semibold">Sell / Rent</p>
         <div className="flex">
           <button
