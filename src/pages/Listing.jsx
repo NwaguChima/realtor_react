@@ -16,7 +16,7 @@ const Listing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const { listingId } = useParams();
-  SwiperCore.use(Autoplay, Navigation, Pagination);
+  SwiperCore.use([Autoplay, Navigation, Pagination]);
 
   useEffect(() => {
     async function fetchListing() {
@@ -50,9 +50,10 @@ const Listing = () => {
         {listing.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full overflow-hidden h-[300px]"
+              className="relative w-full overflow-hidden h-[300px]"
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
+                backgroundSize: "cover",
               }}
             ></div>
           </SwiperSlide>
