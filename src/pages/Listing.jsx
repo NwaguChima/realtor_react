@@ -19,12 +19,17 @@ import {
   FaParking,
   FaShare,
 } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
 
 const Listing = () => {
+  const auth = getAuth();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
+  const [contactLandlord, setContactLandlord] = useState(false);
+
   const { listingId } = useParams();
+
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
   useEffect(() => {
@@ -150,6 +155,16 @@ const Listing = () => {
               {listing.furnished ? `Furnished` : `Not furnished`}
             </li>
           </ul>
+          {listing.userRef !== auth.currentUser?.uid && !contactLandlord && (
+            <div className="mt-6">
+              <button
+                onClick={() => setContactLandlord(true)}
+                className="px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-200 ease-in-out"
+              >
+                Contact Landlord
+              </button>
+            </div>
+          )}
         </div>
         <div className="bg-blue-300 w-full h-[200px] lg:h-[400px] z-10 overflow-x-hidden"></div>
       </div>
