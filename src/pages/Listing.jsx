@@ -11,7 +11,14 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 import "swiper/css/bundle";
-import { FaBath, FaBed, FaMapMarkerAlt, FaShare } from "react-icons/fa";
+import {
+  FaBath,
+  FaBed,
+  FaChair,
+  FaMapMarkerAlt,
+  FaParking,
+  FaShare,
+} from "react-icons/fa";
 
 const Listing = () => {
   const [listing, setListing] = useState(null);
@@ -133,6 +140,14 @@ const Listing = () => {
               {+listing.bathrooms > 1
                 ? `${listing.bathrooms} Baths`
                 : `${listing.bathrooms} Bath`}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaParking className="text-lg mr-1" />
+              {listing.parking ? `Parking Spot` : `No Parking`}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaChair className="text-lg mr-1" />
+              {listing.furnished ? `Furnished` : `Not furnished`}
             </li>
           </ul>
         </div>
