@@ -89,7 +89,18 @@ const Listing = () => {
       )}
 
       <div className="flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg bg-white lg:space-x-5">
-        <div className="bg-pink-300 w-full h-[200px] lg:h-[400px]"></div>
+        <div className="w-full h-[200px] lg:h-[400px]">
+          <p>
+            {listing.name} - ${" "}
+            {listing.offer
+              ? listing.discountedPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : listing.regularPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </p>
+        </div>
         <div className="bg-blue-300 w-full h-[200px] lg:h-[400px] z-10 overflow-x-hidden"></div>
       </div>
     </main>
