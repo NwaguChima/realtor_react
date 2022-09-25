@@ -5,8 +5,8 @@ import { MdLocationOn } from "react-icons/md";
 
 const ListingItem = ({ listing, id }) => {
   return (
-    <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition duration-200 ease-in-out">
-      <Link to={`/category/${listing.type}/${id}`}>
+    <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition duration-200 ease-in-out m-[10px]">
+      <Link className="contents" to={`/category/${listing.type}/${id}`}>
         <img
           className="h-[170px] w-full object-cover hover:scale-105 transition duration-200 ease-in-out"
           src={listing.imgUrls[0]}
