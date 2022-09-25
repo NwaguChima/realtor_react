@@ -10,7 +10,7 @@ import SwiperCore, {
   Navigation,
   Pagination,
 } from "swiper";
-import "Swiper/css/bundle";
+import "swiper/css/bundle";
 
 const Listing = () => {
   const [listing, setListing] = useState(null);
@@ -37,7 +37,29 @@ const Listing = () => {
     return <Spinner />;
   }
 
-  return <div>{listing.name}</div>;
+  return (
+    <main>
+      <Swiper
+        slidesPerView={1}
+        navigation
+        pagination={{ type: "progressbar" }}
+        effect="fade"
+        modules={[EffectFade]}
+        autoplay={{ delay: 3000 }}
+      >
+        {listing.imgUrls.map((url, index) => (
+          <SwiperSlide key={index}>
+            <div
+              className="w-full overflow-hidden h-[300px]"
+              style={{
+                background: `url(${listing.imgUrls[index]}) center no-repeat`,
+              }}
+            ></div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </main>
+  );
 };
 
 export default Listing;
