@@ -11,7 +11,7 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 import "swiper/css/bundle";
-import { FaMapMarkerAlt, FaShare } from "react-icons/fa";
+import { FaBath, FaBed, FaMapMarkerAlt, FaShare } from "react-icons/fa";
 
 const Listing = () => {
   const [listing, setListing] = useState(null);
@@ -117,6 +117,24 @@ const Listing = () => {
               )}
             </p>
           </div>
+          <p className="mt-3 mb-3">
+            <span className="font-semibold">Description - </span>
+            {listing.description}
+          </p>
+          <ul className="flex items-center space-x-2 lg:space-x-10 text-sm font-semibold">
+            <li className="flex items-center whitespace-nowrap">
+              <FaBed className="text-lg mr-1" />
+              {+listing.bedrooms > 1
+                ? `${listing.bedrooms} Beds`
+                : `${listing.bedrooms} Bed`}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaBath className="text-lg mr-1" />
+              {+listing.bathrooms > 1
+                ? `${listing.bathrooms} Baths`
+                : `${listing.bathrooms} Bath`}
+            </li>
+          </ul>
         </div>
         <div className="bg-blue-300 w-full h-[200px] lg:h-[400px] z-10 overflow-x-hidden"></div>
       </div>
