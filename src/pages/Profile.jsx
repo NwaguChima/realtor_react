@@ -97,7 +97,7 @@ const Profile = () => {
   }
 
   function handleEdit(listingId) {
-    navigate(`/edit/${listingId}`);
+    navigate(`/edit-listing/${listingId}`);
   }
 
   return (

@@ -12,6 +12,7 @@ import {
   doc,
   getDoc,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
@@ -75,12 +76,13 @@ function EditListing() {
         setLoading(false);
       } else {
         navigate("/");
+        toast.error("Listing not found");
         setLoading(false);
       }
     }
 
     fetchListing();
-  }, []);
+  }, [listingId, navigate]);
 
   function handleChange(e) {
     e.preventDefault();
@@ -224,10 +226,11 @@ function EditListing() {
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
+    const docRef = doc(db, "listings", listingId);
 
-    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    await updateDoc(docRef, formDataCopy);
     setLoading(false);
-    toast.success("Listing created successfully");
+    toast.success("Listing Edited successfully");
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   }
 
@@ -237,7 +240,7 @@ function EditListing() {
 
   return (
     <main className="max-w-md px-2 mx-auto">
-      <h1 className="text-3xl text-center mt-6 font-bold">Create a Listing</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold">Edit Listing</h1>
       <form onSubmit={handleSubmit}>
         <p className="text-lg mt-6 font-semibold">Sell / Rent</p>
         <div className="flex">
@@ -511,7 +514,7 @@ function EditListing() {
           type="submit"
           className="mb-6 w-full px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-700 transition duration-200 ease-in-out"
         >
-          Create Listing
+          Edit Listing
         </button>
       </form>
     </main>
