@@ -28,23 +28,29 @@ const Contact = ({ userRef, listing }) => {
   return (
     <>
       {landlord !== null && (
-        <div className="">
+        <div className="flex flex-col w-full">
           <p>
             Contact {landlord.name} for the {listing.name.toLowerCase()}{" "}
           </p>
-          <div className="">
+          <div className="mt-3 mb-6">
             <textarea
               name="message"
               id="message"
               rows="2"
               value={message}
               onChange={handleChange}
+              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-slate-600 focus:bg-white focus:text-gray-700 transition duration-200 ease-in-out"
             />
           </div>
           <a
             href={`mailto:${landlord.email}?Subject=${listing.name}&body=${message}`}
           >
-            Send Message
+            <button
+              type="button"
+              className="px-7 py-3 bg-blue-600 text-white rounded text-sm uppercase shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-700 active:shadow-lg transition duration-150 ease-in-out w-full text-center mb-6"
+            >
+              Send Message
+            </button>
           </a>
         </div>
       )}
