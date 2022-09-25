@@ -84,6 +84,13 @@ function EditListing() {
     fetchListing();
   }, [listingId, navigate]);
 
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You are not authorized to edit this listing");
+      navigate("/");
+    }
+  }, [auth.currentUser, listing, navigate]);
+
   function handleChange(e) {
     e.preventDefault();
     let boolean = null;
