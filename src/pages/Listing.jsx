@@ -20,6 +20,7 @@ import {
   FaShare,
 } from "react-icons/fa";
 import { getAuth } from "firebase/auth";
+import Contact from "../components/Contact";
 
 const Listing = () => {
   const auth = getAuth();
@@ -164,6 +165,9 @@ const Listing = () => {
                 Contact Landlord
               </button>
             </div>
+          )}
+          {contactLandlord && (
+            <Contact userRef={listing.userRef} listing={listing} />
           )}
         </div>
         <div className="bg-blue-300 w-full h-[200px] lg:h-[400px] z-10 overflow-x-hidden"></div>
