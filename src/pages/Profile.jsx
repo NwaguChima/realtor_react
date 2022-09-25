@@ -1,5 +1,6 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import {
+  collection,
   doc,
   getDocs,
   orderBy,
@@ -11,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { FcHome } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ListingItem from "../components/ListingItem";
 import { db } from "../firebase";
 
 const Profile = () => {
@@ -40,25 +42,23 @@ const Profile = () => {
 
   useEffect(() => {
     async function fetchUserListings() {
-      const listingRef = doc(db, "listings");
-
+      const listingRef = collection(db, "listings");
       const q = query(
         listingRef,
         where("userRef", "==", auth.currentUser.uid),
         orderBy("timestamp", "desc")
       );
-
-      const querySnapshot = await getDocs(q);
+      const querySnap = await getDocs(q);
       let listings = [];
-
-      querySnapshot.forEach((doc) => {
-        listings.push({ data: doc.data(), id: doc.id });
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
       });
-
       setListings(listings);
       setLoading(false);
     }
-
     fetchUserListings();
   }, [auth.currentUser.uid]);
 
@@ -142,6 +142,22 @@ const Profile = () => {
           </button>
         </div>
       </section>
+      <div>
+        {!loading && listings?.length > 0 && (
+          <>
+            <h2 className="text-2xl text-center font-semibold">My Listings</h2>
+            <ul>
+              {listings.map((listing) => (
+                <ListingItem
+                  key={listing.id}
+                  id={listing.id}
+                  listing={listing.data}
+                />
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
     </>
   );
 };
