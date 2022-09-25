@@ -83,6 +83,10 @@ const Profile = () => {
     }
   }
 
+  function handleDelete(id) {}
+
+  function handleEdit(id) {}
+
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -154,6 +158,8 @@ const Profile = () => {
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  onDelete={() => handleDelete(listing.id)}
+                  onEdit={() => handleEdit(listing.id)}
                 />
               ))}
             </ul>
