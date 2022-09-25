@@ -17,7 +17,8 @@ const Profile = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [changeDetail, setChangeDetail] = useState(false);
-
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
@@ -53,10 +54,13 @@ const Profile = () => {
       querySnapshot.forEach((doc) => {
         listings.push({ data: doc.data(), id: doc.id });
       });
+
+      setListings(listings);
+      setLoading(false);
     }
 
     fetchUserListings();
-  }, []);
+  }, [auth.currentUser.uid]);
 
   async function handleChangeDetail() {
     try {
