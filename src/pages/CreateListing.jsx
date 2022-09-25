@@ -188,6 +188,7 @@ function CreateListing() {
       imgUrls,
       geoLocation,
       timestamp: serverTimestamp(),
+      userRef: auth.currentUser.uid,
     };
 
     delete formDataCopy.images;

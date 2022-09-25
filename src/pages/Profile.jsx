@@ -1,6 +1,13 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import {
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { FcHome } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -29,6 +36,27 @@ const Profile = () => {
       [e.target.id]: e.target.value,
     }));
   }
+
+  useEffect(() => {
+    async function fetchUserListings() {
+      const listingRef = doc(db, "listings");
+
+      const q = query(
+        listingRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc")
+      );
+
+      const querySnapshot = await getDocs(q);
+      let listings = [];
+
+      querySnapshot.forEach((doc) => {
+        listings.push({ data: doc.data(), id: doc.id });
+      });
+    }
+
+    fetchUserListings();
+  }, []);
 
   async function handleChangeDetail() {
     try {
