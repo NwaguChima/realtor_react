@@ -1,14 +1,25 @@
-import React, { useEffect } from "react";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import Slider from "../components/Slider";
+import { db } from "../firebase";
 
 const Home = () => {
+  const [listings, setListings] = useState(null);
+
   useEffect(() => {
     async function fetchListings() {
-      const listings = await fetch(
-        "https://us-central1-rental-clone-1a6f7.cloudfunctions.net/api/listings"
-      );
-      const listingsJson = await listings.json();
-      console.log(listingsJson);
+      const listingsRef = collection(db, "listings");
+      const q = query(listingsRef, orderBy("timestamp", "desc"), limit(5));
+      const querySnap = await getDocs(q);
+      let listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setListings(listings);
     }
 
     fetchListings();
