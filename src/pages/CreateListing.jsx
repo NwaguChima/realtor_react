@@ -78,6 +78,10 @@ function CreateListing() {
           toast.error(
             `${files.length > 1 ? "Each file" : "File"} must not exceed 4MB`
           );
+
+
+
+          
           return;
         }
       }
