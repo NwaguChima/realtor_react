@@ -30,7 +30,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
           </div>
           <p className="font-semibold mt-0 text-xl truncate">{listing.name}</p>
           <p className="text-[#457b9d] mt-2 font-semibold">
-            $
+            #
             {listing.offer
               ? listing.discountedPrice
                   .toString()

@@ -78,6 +78,7 @@ function CreateListing() {
           toast.error(
             `${files.length > 1 ? "Each file" : "File"} must not exceed 4MB`
           );
+
           return;
         }
       }
@@ -429,7 +430,7 @@ function CreateListing() {
               />
               {type === "rent" && (
                 <div className="">
-                  <p className="text-md w-full whitespace-nowrap ">$ / Month</p>
+                  <p className="text-md w-full whitespace-nowrap "># / Month</p>
                 </div>
               )}
             </div>
@@ -454,7 +455,7 @@ function CreateListing() {
                 {type === "rent" && (
                   <div className="">
                     <p className="text-md w-full whitespace-nowrap ">
-                      $ / Month
+                      # / Month
                     </p>
                   </div>
                 )}

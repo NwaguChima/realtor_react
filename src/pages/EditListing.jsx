@@ -468,7 +468,7 @@ function EditListing() {
               />
               {type === "rent" && (
                 <div className="">
-                  <p className="text-md w-full whitespace-nowrap ">$ / Month</p>
+                  <p className="text-md w-full whitespace-nowrap "># / Month</p>
                 </div>
               )}
             </div>
@@ -493,7 +493,7 @@ function EditListing() {
                 {type === "rent" && (
                   <div className="">
                     <p className="text-md w-full whitespace-nowrap ">
-                      $ / Month
+                      # / Month
                     </p>
                   </div>
                 )}
