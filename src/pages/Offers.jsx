@@ -33,6 +33,7 @@ const Offers = () => {
         const querySnap = await getDocs(q);
         const lastVisible = querySnap.docs[querySnap.docs.length - 1];
         setLastFetchedListing(lastVisible);
+        console.log("lastVisible", lastVisible);
 
         const listings = [];
 
