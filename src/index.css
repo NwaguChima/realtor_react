@@ -22,3 +22,17 @@ html::-webkit-scrollbar {
 html {
   scrollbar-width: none;
 }
+
+@media only screen and (max-width: 370px) {
+  .fix-class > ul {
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 10px !important;
+    gap: 5px !important;
+  }
+
+  .fix-class > ul > li {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}

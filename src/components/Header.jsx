@@ -36,8 +36,8 @@ const Header = () => {
             onClick={() => navigate("/")}
           />
         </div>
-        <div>
-          <ul className="flex space-x-10">
+        <div className="fix-class">
+          <ul className="flex space-x-5 sm:space-x-10 mt-2">
             <li
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
                 pathMatchRoute("/") && "text-black border-b-red-500"
