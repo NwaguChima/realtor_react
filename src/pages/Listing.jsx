@@ -103,7 +103,7 @@ const Listing = () => {
 
       <div className="flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg bg-white lg:space-x-5 mt-6">
         <div className="w-full">
-          <p className="text-2xl font-bold mb-3 text-blue-900">
+          <p className="sm:text-2xl text-xl font-bold mb-3 text-blue-900">
             {listing.name} - #{" "}
             {listing.offer
               ? listing.discountedPrice
@@ -116,40 +116,40 @@ const Listing = () => {
           </p>
           <p className="flex items-center mt-6 mb-3 font-semibold">
             <FaMapMarkerAlt className="text-green-700 mr-1" />
-            {listing.address}
+            <span className="text-xs sm:text-sm">{listing.address}</span>
           </p>
           <div className="flex justify-start items-center space-x-4 w-[75%]">
             <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">
               {listing.type === "rent" ? "Rent" : "Sale"}
             </p>
             {listing.offer && (
-              <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
+              <p className="w-full max-w-[200px] text-xs sm:text-sm bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
                 #{+listing.regularPrice - +listing.discountedPrice} discount
               </p>
             )}
           </div>
           <p className="mt-3 mb-3">
             <span className="font-semibold">Description - </span>
-            {listing.description}
+            <span className="text-sm sm:text-lg">{listing.description}</span>
           </p>
-          <ul className="flex items-center space-x-2 lg:space-x-10 text-sm font-semibold mb-6">
-            <li className="flex items-center whitespace-nowrap">
+          <ul className="flex flex-wrap sm:flex-nowrap items-center space-x-2 lg:space-x-10 text-sm font-semibold mb-6">
+            <li className="flex items-center whitespace-nowrap mb-2">
               <FaBed className="text-lg mr-1" />
               {+listing.bedrooms > 1
                 ? `${listing.bedrooms} Beds`
                 : `${listing.bedrooms} Bed`}
             </li>
-            <li className="flex items-center whitespace-nowrap">
+            <li className="flex items-center whitespace-nowrap mb-2">
               <FaBath className="text-lg mr-1" />
               {+listing.bathrooms > 1
                 ? `${listing.bathrooms} Baths`
                 : `${listing.bathrooms} Bath`}
             </li>
-            <li className="flex items-center whitespace-nowrap">
+            <li className="flex items-center whitespace-nowrap mb-2">
               <FaParking className="text-lg mr-1" />
               {listing.parking ? `Parking Spot` : `No Parking`}
             </li>
-            <li className="flex items-center whitespace-nowrap">
+            <li className="flex items-center whitespace-nowrap mb-2">
               <FaChair className="text-lg mr-1" />
               {listing.furnished ? `Furnished` : `Not furnished`}
             </li>
@@ -158,7 +158,7 @@ const Listing = () => {
             <div className="mt-6">
               <button
                 onClick={() => setContactLandlord(true)}
-                className="px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-200 ease-in-out"
+                className="px-7 py-3 bg-blue-600 text-white font-medium text-xs sm:text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-200 ease-in-out"
               >
                 Contact Landlord
               </button>

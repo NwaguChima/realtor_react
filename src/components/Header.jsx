@@ -32,7 +32,7 @@ const Header = () => {
           <img
             src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
             alt="logo"
-            className="h-5 cursor-pointer"
+            className="h-4 sm:h-5 cursor-pointer"
             onClick={() => navigate("/")}
           />
         </div>

@@ -127,12 +127,14 @@ const Home = () => {
       <div className="max-w-6xl mx-auto pt-4 space-y-6">
         {offerListings && offerListings.length > 0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">Recent offers</h2>
+            <h2 className="px-3 text-xl sm:text-2xl mt-6 font-semibold">
+              Recent offers
+            </h2>
             <Link
               to="/offers"
               className="text-sm text-gray-500 hover:text-gray-600"
             >
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
+              <p className="px-3 text-xs sm:text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
                 Show more offers
               </p>
             </Link>
@@ -150,14 +152,14 @@ const Home = () => {
 
         {rentListings && rentListings.length > 0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">
+            <h2 className="px-3 text-xl sm:text-2xl mt-6 font-semibold">
               Places for rent
             </h2>
             <Link
               to="/category/rent"
               className="text-sm text-gray-500 hover:text-gray-600"
             >
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
+              <p className="px-3 text-xs sm:text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
                 Show more places for rent
               </p>
             </Link>
@@ -175,14 +177,14 @@ const Home = () => {
 
         {saleListings && saleListings.length > 0 && (
           <div className="m-2 mb-6">
-            <h2 className="px-3 text-2xl mt-6 font-semibold">
+            <h2 className="px-3 text-xl sm:text-2xl mt-6 font-semibold">
               Places for sale
             </h2>
             <Link
               to="/category/sale"
               className="text-sm text-gray-500 hover:text-gray-600"
             >
-              <p className="px-3 text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
+              <p className="px-3 text-xs sm:text-sm text-blue-600 hover:text-blue-700 transition duration-150 ease-in-out">
                 Show more places for sale
               </p>
             </Link>

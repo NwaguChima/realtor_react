@@ -103,7 +103,9 @@ const Profile = () => {
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
-        <h1 className="text-3xl text-center mt-6 font-bold">My Profile</h1>
+        <h1 className="sm:text-3xl text-2xl text-center mt-6 font-bold">
+          My Profile
+        </h1>
         <div className="w-full md:w-[50%] mt-6 px-3">
           <form>
             <input
@@ -112,7 +114,7 @@ const Profile = () => {
               value={name}
               onChange={handleChange}
               disabled={!changeDetail}
-              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 ${
+              className={`w-full px-4 py-2 text-l text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6 ${
                 changeDetail && "bg-red-200 focus:bg-red-200"
               }`}
             />
@@ -121,10 +123,10 @@ const Profile = () => {
               id="email"
               value={email}
               disabled
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6"
+              className="w-full px-4 py-2 text-l text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6"
             />
 
-            <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg mb-6">
+            <div className="flex flex-col sm:flex-row justify-between whitespace-nowrap text-sm sm:text-lg mb-6">
               <p className="flex  items-center">
                 Do you want to change your name?
                 <span
@@ -151,7 +153,7 @@ const Profile = () => {
           >
             <Link
               to="/create-listing"
-              className="flex items-center justify-center"
+              className="flex text-xs sm:text-sm items-center justify-center"
             >
               <FcHome className="mr-2 text-3xl bg-red-200 rounded-full p-1 border-2" />
               Sell or rent your home
@@ -162,7 +164,7 @@ const Profile = () => {
       <div className="max-w-6xl px-3 mt-6 mx-auto">
         {!loading && listings?.length > 0 && (
           <>
-            <h2 className="text-2xl text-center font-semibold mb-6 mt-6">
+            <h2 className="text-xl sm:text-2xl text-center font-semibold mb-6 mt-6">
               My Listings
             </h2>
             <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 mb-6">

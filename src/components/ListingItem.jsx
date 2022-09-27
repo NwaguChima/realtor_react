@@ -24,12 +24,14 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
         <div className="w-full p-[10px]">
           <div className="flex items-center space-x-1">
             <MdLocationOn className="h-4 w-4 text-green-600" />
-            <p className="font-semibold text-sm mb-[2px] text-gray-600 truncate">
+            <p className="font-semibold text-xs sm:text-sm mb-[2px] text-gray-600 truncate">
               {listing.address}
             </p>
           </div>
-          <p className="font-semibold mt-0 text-xl truncate">{listing.name}</p>
-          <p className="text-[#457b9d] mt-2 font-semibold">
+          <p className="font-semibold mt-0 sm:text-xl text-l truncate">
+            {listing.name}
+          </p>
+          <p className="text-[#457b9d] text-sm sm:text-lg mt-2 font-semibold">
             #
             {listing.offer
               ? listing.discountedPrice

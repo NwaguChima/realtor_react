@@ -61,7 +61,7 @@ const SignIn = () => {
               value={email}
               onChange={onChange}
               placeholder="Email address"
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6"
+              className="w-full px-4 py-2 text-lg text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6"
             />
             <div className="relative mb-6">
               <input
@@ -70,7 +70,7 @@ const SignIn = () => {
                 id="password"
                 value={password}
                 onChange={onChange}
-                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+                className="w-full px-4 py-2 text-lg text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               />
               {showPassword ? (
                 <AiFillEyeInvisible
@@ -84,8 +84,8 @@ const SignIn = () => {
                 />
               )}
             </div>
-            <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
-              <p className="mb-6">
+            <div className="flex flex-col sm:flex-row justify-between whitespace-nowrap text-sm sm:text-lg">
+              <p className="mb-1 sm:mb-6">
                 Don't have an account?
                 <Link
                   to="/sign-up"
@@ -94,7 +94,7 @@ const SignIn = () => {
                   Register
                 </Link>
               </p>
-              <p>
+              <p className="mb-1">
                 <Link
                   to="/forgot-password"
                   className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out"
@@ -104,7 +104,7 @@ const SignIn = () => {
               </p>
             </div>
             <button
-              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow hover:bg-blue-700 transition duration-200 ease-in-out hover:shadow-lg active:bg-blue-800"
+              className="w-full bg-blue-600 text-white px-7 py-3 text-xs sm:text-sm font-medium uppercase rounded shadow hover:bg-blue-700 transition duration-200 ease-in-out hover:shadow-lg active:bg-blue-800"
               type="submit"
             >
               Sign in
