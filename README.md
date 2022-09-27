@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Realtor-React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[]: # Title: Realtor-React
+[]: # Version: 1.0.0
+[]: # Description: Realtor-React
 
 ## Available Scripts
 

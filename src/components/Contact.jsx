@@ -7,7 +7,6 @@ const Contact = ({ userRef, listing }) => {
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState("");
 
-  console.log("landlor", landlord);
   useEffect(() => {
     async function getLandlord() {
       const docRef = doc(db, "users", userRef);

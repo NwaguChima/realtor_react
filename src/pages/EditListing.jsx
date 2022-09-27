@@ -6,14 +6,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { getAuth } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { v4 as uuidv4 } from "uuid";
@@ -22,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function EditListing() {
   const auth = getAuth();
+  // eslint-disable-next-line
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState(null);

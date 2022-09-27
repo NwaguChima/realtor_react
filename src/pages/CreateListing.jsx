@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 function CreateListing() {
   const auth = getAuth();
+  // eslint-disable-next-line
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
